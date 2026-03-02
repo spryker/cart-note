@@ -9,11 +9,5 @@ namespace Spryker\Zed\CartNote\Persistence;
 
 interface CartNoteEntityManagerInterface
 {
-    /**
-     * @param int $idSalesOrder
-     * @param string $note
-     *
-     * @return void
-     */
     public function updateOrderNote(int $idSalesOrder, string $note): void;
 }

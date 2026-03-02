@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\CartReorderTransfer;
 
 interface CartReorderExpanderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\CartReorderTransfer $cartReorderTransfer
-     *
-     * @return \Generated\Shared\Transfer\CartReorderTransfer
-     */
     public function expandCartReorderQuoteWithCartNote(CartReorderTransfer $cartReorderTransfer): CartReorderTransfer;
 }

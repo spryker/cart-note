@@ -56,11 +56,6 @@ class CartNoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addSalesOrderQuery(Container $container): Container
     {
         $container->set(static::SALES_ORDER_QUERY, $container->factory(function () {
@@ -70,11 +65,6 @@ class CartNoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteFacade(Container $container): Container
     {
         $container->set(static::FACADE_QUOTE, function (Container $container) {
@@ -84,11 +74,6 @@ class CartNoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addQuoteItemsFinderPlugin(Container $container): Container
     {
         $container->set(static::PLUGIN_QUOTE_ITEMS_FINDER, function (Container $container) {
@@ -98,9 +83,6 @@ class CartNoteDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @return \Spryker\Zed\CartNoteExtension\Dependency\Plugin\QuoteItemFinderPluginInterface
-     */
     protected function getQuoteItemsFinderPlugin(): QuoteItemFinderPluginInterface
     {
         return new QuoteItemFinderPlugin();

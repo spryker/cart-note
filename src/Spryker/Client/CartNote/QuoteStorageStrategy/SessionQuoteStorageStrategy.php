@@ -25,29 +25,17 @@ class SessionQuoteStorageStrategy implements QuoteStorageStrategyInterface
      */
     protected $quoteItemFinderPlugin;
 
-    /**
-     * @param \Spryker\Client\CartNote\Dependency\Client\CartNoteToQuoteClientInterface $quoteClient
-     * @param \Spryker\Client\CartNoteExtension\Dependency\Plugin\QuoteItemFinderPluginInterface $quoteItemFinderPlugin
-     */
     public function __construct(CartNoteToQuoteClientInterface $quoteClient, QuoteItemFinderPluginInterface $quoteItemFinderPlugin)
     {
         $this->quoteClient = $quoteClient;
         $this->quoteItemFinderPlugin = $quoteItemFinderPlugin;
     }
 
-    /**
-     * @return string
-     */
     public function getStorageStrategy(): string
     {
         return QuoteConfig::STORAGE_STRATEGY_SESSION;
     }
 
-    /**
-     * @param string $note
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function setNoteToQuote(string $note): QuoteResponseTransfer
     {
         $quoteTransfer = $this->quoteClient->getQuote();
@@ -60,13 +48,6 @@ class SessionQuoteStorageStrategy implements QuoteStorageStrategyInterface
         return $quoteNoteResponseTransfer;
     }
 
-    /**
-     * @param string $note
-     * @param string $sku
-     * @param string|null $groupKey
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function setNoteToQuoteItem(string $note, string $sku, ?string $groupKey = null): QuoteResponseTransfer
     {
         $quoteTransfer = $this->quoteClient->getQuote();

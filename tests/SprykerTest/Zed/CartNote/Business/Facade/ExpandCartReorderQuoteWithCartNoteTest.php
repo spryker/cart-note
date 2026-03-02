@@ -38,9 +38,6 @@ class ExpandCartReorderQuoteWithCartNoteTest extends Unit
      */
     protected CartNoteBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testSetsQuoteCartNoteWhenOrderCartNoteIsProvided(): void
     {
         // Arrange
@@ -59,9 +56,6 @@ class ExpandCartReorderQuoteWithCartNoteTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testSetsNullWhenOrderCartNoteIsNotProvided(): void
     {
         // Arrange

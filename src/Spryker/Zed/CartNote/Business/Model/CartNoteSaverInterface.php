@@ -12,12 +12,5 @@ use Generated\Shared\Transfer\SaveOrderTransfer;
 
 interface CartNoteSaverInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     * @param bool|null $forceUpdate
-     *
-     * @return void
-     */
     public function saveCartNoteToOrder(QuoteTransfer $quoteTransfer, SaveOrderTransfer $saveOrderTransfer, ?bool $forceUpdate = false): void;
 }

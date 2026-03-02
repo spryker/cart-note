@@ -31,12 +31,6 @@ class CartNoteBusinessTester extends Actor
 {
     use _generated\CartNoteBusinessTesterActions;
 
-    /**
-     * @param int $idSalesOrder
-     * @param string|null $cartNote
-     *
-     * @return void
-     */
     public function updateCartNote(int $idSalesOrder, ?string $cartNote): void
     {
         $salesOrderEntity = $this->getSalesOrderQuery()->filterByIdSalesOrder($idSalesOrder)->findOne();
@@ -44,19 +38,11 @@ class CartNoteBusinessTester extends Actor
         $salesOrderEntity->save();
     }
 
-    /**
-     * @param int $idSalesOrder
-     *
-     * @return string|null
-     */
     public function findOrderCartNote(int $idSalesOrder): ?string
     {
         return $this->getSalesOrderQuery()->filterByIdSalesOrder($idSalesOrder)->findOne()->getCartNote();
     }
 
-    /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrderQuery
-     */
     protected function getSalesOrderQuery(): SpySalesOrderQuery
     {
         return SpySalesOrderQuery::create();

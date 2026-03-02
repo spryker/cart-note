@@ -46,9 +46,6 @@ class SaveOrderCartNoteTest extends Unit
      */
     protected CartNoteBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -56,9 +53,6 @@ class SaveOrderCartNoteTest extends Unit
         $this->tester->configureTestStateMachine([static::DEFAULT_OMS_PROCESS_NAME]);
     }
 
-    /**
-     * @return void
-     */
     public function testThrowsNullValueExceptionWhenIdSalesOrderIsNotSetInSaveOrderTransfer(): void
     {
         // Assert

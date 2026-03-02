@@ -9,8 +9,5 @@ namespace Spryker\Client\CartNote\QuoteStorageStrategy;
 
 interface QuoteStorageStrategyProviderInterface
 {
-    /**
-     * @return \Spryker\Client\CartNote\QuoteStorageStrategy\QuoteStorageStrategyInterface
-     */
     public function provideStorage(): QuoteStorageStrategyInterface;
 }

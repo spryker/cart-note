@@ -26,29 +26,17 @@ class DatabaseQuoteStorageStrategy implements QuoteStorageStrategyInterface
      */
     protected $cartNoteZedStub;
 
-    /**
-     * @param \Spryker\Client\CartNote\Dependency\Client\CartNoteToQuoteClientInterface $quoteClient
-     * @param \Spryker\Client\CartNote\Zed\CartNoteStubInterface $cartNoteZedStub
-     */
     public function __construct(CartNoteToQuoteClientInterface $quoteClient, CartNoteStubInterface $cartNoteZedStub)
     {
         $this->quoteClient = $quoteClient;
         $this->cartNoteZedStub = $cartNoteZedStub;
     }
 
-    /**
-     * @return string
-     */
     public function getStorageStrategy(): string
     {
         return QuoteConfig::STORAGE_STRATEGY_DATABASE;
     }
 
-    /**
-     * @param string $note
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function setNoteToQuote(string $note): QuoteResponseTransfer
     {
         $quoteTransfer = $this->quoteClient->getQuote();
@@ -67,13 +55,6 @@ class DatabaseQuoteStorageStrategy implements QuoteStorageStrategyInterface
         return $quoteResponseTransfer;
     }
 
-    /**
-     * @param string $note
-     * @param string $sku
-     * @param string|null $groupKey
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function setNoteToQuoteItem(string $note, string $sku, ?string $groupKey = null): QuoteResponseTransfer
     {
         $quoteTransfer = $this->quoteClient->getQuote();

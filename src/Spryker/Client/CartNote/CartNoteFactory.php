@@ -21,17 +21,11 @@ use Spryker\Client\ZedRequest\ZedRequestClientInterface;
 
 class CartNoteFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Client\CartNote\QuoteStorageStrategy\QuoteStorageStrategyInterface
-     */
     public function getQuoteStorageStrategy(): QuoteStorageStrategyInterface
     {
         return $this->createQuoteStorageStrategyProvider()->provideStorage();
     }
 
-    /**
-     * @return \Spryker\Client\CartNote\QuoteStorageStrategy\QuoteStorageStrategyProviderInterface
-     */
     public function createQuoteStorageStrategyProvider(): QuoteStorageStrategyProviderInterface
     {
         return new QuoteStorageStrategyProvider(
@@ -51,17 +45,11 @@ class CartNoteFactory extends AbstractFactory
         ];
     }
 
-    /**
-     * @return \Spryker\Client\CartNote\QuoteStorageStrategy\QuoteStorageStrategyInterface
-     */
     public function createSessionQuoteStorageStrategy(): QuoteStorageStrategyInterface
     {
         return new SessionQuoteStorageStrategy($this->getQuoteClient(), $this->getQuoteItemsFinderPlugin());
     }
 
-    /**
-     * @return \Spryker\Client\CartNote\QuoteStorageStrategy\QuoteStorageStrategyInterface
-     */
     public function createDatabaseQuoteStorageStrategy(): QuoteStorageStrategyInterface
     {
         return new DatabaseQuoteStorageStrategy(
@@ -70,33 +58,21 @@ class CartNoteFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Client\CartNote\Zed\CartNoteStubInterface
-     */
     public function createZedCartNoteStub(): CartNoteStubInterface
     {
         return new CartNoteStub($this->getZedRequestClient());
     }
 
-    /**
-     * @return \Spryker\Client\CartNote\Dependency\Client\CartNoteToQuoteClientInterface
-     */
     public function getQuoteClient(): CartNoteToQuoteClientInterface
     {
         return $this->getProvidedDependency(CartNoteDependencyProvider::CLIENT_QUOTE);
     }
 
-    /**
-     * @return \Spryker\Client\ZedRequest\ZedRequestClientInterface
-     */
     public function getZedRequestClient(): ZedRequestClientInterface
     {
         return $this->getProvidedDependency(CartNoteDependencyProvider::CLIENT_ZED_REQUEST);
     }
 
-    /**
-     * @return \Spryker\Client\CartNoteExtension\Dependency\Plugin\QuoteItemFinderPluginInterface
-     */
     public function getQuoteItemsFinderPlugin(): QuoteItemFinderPluginInterface
     {
         return $this->getProvidedDependency(CartNoteDependencyProvider::PLUGIN_QUOTE_ITEMS_FINDER);

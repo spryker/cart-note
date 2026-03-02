@@ -14,12 +14,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
  */
 class CartNoteEntityManager extends AbstractEntityManager implements CartNoteEntityManagerInterface
 {
-    /**
-     * @param int $idSalesOrder
-     * @param string $note
-     *
-     * @return void
-     */
     public function updateOrderNote(int $idSalesOrder, string $note): void
     {
         $salesOrderEntity = $this->getFactory()->getSalesOrderQuery()

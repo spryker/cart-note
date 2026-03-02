@@ -26,21 +26,12 @@ class QuoteCartNoteSetter implements QuoteCartNoteSetterInterface
      */
     protected $quoteItemFinderPlugin;
 
-    /**
-     * @param \Spryker\Zed\CartNote\Dependency\Facade\CartNoteToQuoteFacadeInterface $quoteFacade
-     * @param \Spryker\Zed\CartNoteExtension\Dependency\Plugin\QuoteItemFinderPluginInterface $quoteItemFinderPlugin
-     */
     public function __construct(CartNoteToQuoteFacadeInterface $quoteFacade, QuoteItemFinderPluginInterface $quoteItemFinderPlugin)
     {
         $this->quoteFacade = $quoteFacade;
         $this->quoteItemFinderPlugin = $quoteItemFinderPlugin;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteCartNoteRequestTransfer $quoteCartNoteRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function setQuoteNote(QuoteCartNoteRequestTransfer $quoteCartNoteRequestTransfer): QuoteResponseTransfer
     {
         $quoteResponseTransfer = $this->quoteFacade->findQuoteById($quoteCartNoteRequestTransfer->getIdQuote());
@@ -54,11 +45,6 @@ class QuoteCartNoteSetter implements QuoteCartNoteSetterInterface
         return $this->quoteFacade->updateQuote($quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteItemCartNoteRequestTransfer $quoteItemCartNoteRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function setQuoteItemNote(QuoteItemCartNoteRequestTransfer $quoteItemCartNoteRequestTransfer): QuoteResponseTransfer
     {
         $quoteResponseTransfer = $this->quoteFacade->findQuoteById($quoteItemCartNoteRequestTransfer->getIdQuote());

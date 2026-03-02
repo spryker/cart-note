@@ -33,9 +33,6 @@ class CartNoteSalesOrderItemCollectorPluginTest extends Unit
      */
     protected CartNoteCommunicationTester $tester;
 
-    /**
-     * @return void
-     */
     public function testAddsItemWithUpdatedCartNoteToItemsToUpdateAndRemovesFromItemsToSkip(): void
     {
         // Arrange
@@ -60,9 +57,6 @@ class CartNoteSalesOrderItemCollectorPluginTest extends Unit
         $this->assertSame($updatedSalesOrderAmendmentItemCollectionTransfer->getItemsToUpdate()->offsetGet(0)->getCartNote(), 'cart note 2');
     }
 
-    /**
-     * @return void
-     */
     public function testDoesNotAddItemWithSameCartNoteToItemsToUpdateAndDoesNotRemoveFromItemsToSkip(): void
     {
         // Arrange

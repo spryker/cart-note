@@ -19,10 +19,5 @@ interface CartNoteToQuoteFacadeInterface
      */
     public function findQuoteById($idQuote): QuoteResponseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteResponseTransfer
-     */
     public function updateQuote(QuoteTransfer $quoteTransfer): QuoteResponseTransfer;
 }

@@ -38,9 +38,6 @@ class HydrateCartReorderItemsWithCartNoteTest extends Unit
      */
     protected CartNoteBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testShouldAddReorderItemsWithCartNoteWhenItemWasNotAddedToReorderItems(): void
     {
         // Arrange
@@ -70,9 +67,6 @@ class HydrateCartReorderItemsWithCartNoteTest extends Unit
         $this->assertSame($orderItemTransfers[1]->getQuantityOrFail(), $reorderItemTransfer->getQuantity());
     }
 
-    /**
-     * @return void
-     */
     public function testShouldAddCartNoteToReorderItemWhenItemWasPreviouslyAddedToReorderItems(): void
     {
         // Arrange
@@ -104,9 +98,6 @@ class HydrateCartReorderItemsWithCartNoteTest extends Unit
         $this->assertSame(static::TEST_ITEM_NOTE, $reorderItemTransfer->getCartNote());
     }
 
-    /**
-     * @return void
-     */
     public function testShouldDoNothingWhenNoItemsWithCartNoteProvided(): void
     {
         // Arrange
