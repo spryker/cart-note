@@ -10,26 +10,20 @@ namespace Spryker\Client\CartNote\QuoteStorageStrategy;
 use Generated\Shared\Transfer\QuoteCartNoteRequestTransfer;
 use Generated\Shared\Transfer\QuoteItemCartNoteRequestTransfer;
 use Generated\Shared\Transfer\QuoteResponseTransfer;
+use Spryker\Client\CartNote\CartNoteConfig;
 use Spryker\Client\CartNote\Dependency\Client\CartNoteToQuoteClientInterface;
 use Spryker\Client\CartNote\Zed\CartNoteStubInterface;
 use Spryker\Shared\Quote\QuoteConfig;
 
 class DatabaseQuoteStorageStrategy implements QuoteStorageStrategyInterface
 {
-    /**
-     * @var \Spryker\Client\CartNote\Dependency\Client\CartNoteToQuoteClientInterface
-     */
-    protected $quoteClient;
+    use CartNoteLengthValidatorTrait;
 
-    /**
-     * @var \Spryker\Client\CartNote\Zed\CartNoteStubInterface
-     */
-    protected $cartNoteZedStub;
-
-    public function __construct(CartNoteToQuoteClientInterface $quoteClient, CartNoteStubInterface $cartNoteZedStub)
-    {
-        $this->quoteClient = $quoteClient;
-        $this->cartNoteZedStub = $cartNoteZedStub;
+    public function __construct(
+        protected CartNoteToQuoteClientInterface $quoteClient,
+        protected CartNoteStubInterface $cartNoteZedStub,
+        protected CartNoteConfig $cartNoteConfig
+    ) {
     }
 
     public function getStorageStrategy(): string
@@ -39,6 +33,10 @@ class DatabaseQuoteStorageStrategy implements QuoteStorageStrategyInterface
 
     public function setNoteToQuote(string $note): QuoteResponseTransfer
     {
+        if (!$this->isCartNoteLengthValid($note, $this->cartNoteConfig)) {
+            return $this->createCartNoteLengthErrorResponse($this->cartNoteConfig);
+        }
+
         $quoteTransfer = $this->quoteClient->getQuote();
         $customerTransfer = $quoteTransfer->getCustomer();
         $quoteCartNoteRequestTransfer = new QuoteCartNoteRequestTransfer();
@@ -57,6 +55,10 @@ class DatabaseQuoteStorageStrategy implements QuoteStorageStrategyInterface
 
     public function setNoteToQuoteItem(string $note, string $sku, ?string $groupKey = null): QuoteResponseTransfer
     {
+        if (!$this->isCartNoteLengthValid($note, $this->cartNoteConfig)) {
+            return $this->createCartNoteLengthErrorResponse($this->cartNoteConfig);
+        }
+
         $quoteTransfer = $this->quoteClient->getQuote();
         $customerTransfer = $quoteTransfer->getCustomer();
 

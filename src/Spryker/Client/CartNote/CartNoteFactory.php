@@ -19,6 +19,9 @@ use Spryker\Client\CartNoteExtension\Dependency\Plugin\QuoteItemFinderPluginInte
 use Spryker\Client\Kernel\AbstractFactory;
 use Spryker\Client\ZedRequest\ZedRequestClientInterface;
 
+/**
+ * @method \Spryker\Client\CartNote\CartNoteConfig getConfig()
+ */
 class CartNoteFactory extends AbstractFactory
 {
     public function getQuoteStorageStrategy(): QuoteStorageStrategyInterface
@@ -47,7 +50,11 @@ class CartNoteFactory extends AbstractFactory
 
     public function createSessionQuoteStorageStrategy(): QuoteStorageStrategyInterface
     {
-        return new SessionQuoteStorageStrategy($this->getQuoteClient(), $this->getQuoteItemsFinderPlugin());
+        return new SessionQuoteStorageStrategy(
+            $this->getQuoteClient(),
+            $this->getQuoteItemsFinderPlugin(),
+            $this->getConfig(),
+        );
     }
 
     public function createDatabaseQuoteStorageStrategy(): QuoteStorageStrategyInterface
@@ -55,6 +62,7 @@ class CartNoteFactory extends AbstractFactory
         return new DatabaseQuoteStorageStrategy(
             $this->getQuoteClient(),
             $this->createZedCartNoteStub(),
+            $this->getConfig(),
         );
     }
 
