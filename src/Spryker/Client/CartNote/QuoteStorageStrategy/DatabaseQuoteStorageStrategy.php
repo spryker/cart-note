@@ -22,7 +22,7 @@ class DatabaseQuoteStorageStrategy implements QuoteStorageStrategyInterface
     public function __construct(
         protected CartNoteToQuoteClientInterface $quoteClient,
         protected CartNoteStubInterface $cartNoteZedStub,
-        protected CartNoteConfig $cartNoteConfig
+        protected CartNoteConfig $config
     ) {
     }
 
@@ -33,8 +33,8 @@ class DatabaseQuoteStorageStrategy implements QuoteStorageStrategyInterface
 
     public function setNoteToQuote(string $note): QuoteResponseTransfer
     {
-        if (!$this->isCartNoteLengthValid($note, $this->cartNoteConfig)) {
-            return $this->createCartNoteLengthErrorResponse($this->cartNoteConfig);
+        if (!$this->isCartNoteLengthValid($note)) {
+            return $this->createCartNoteLengthErrorResponse();
         }
 
         $quoteTransfer = $this->quoteClient->getQuote();
@@ -55,8 +55,8 @@ class DatabaseQuoteStorageStrategy implements QuoteStorageStrategyInterface
 
     public function setNoteToQuoteItem(string $note, string $sku, ?string $groupKey = null): QuoteResponseTransfer
     {
-        if (!$this->isCartNoteLengthValid($note, $this->cartNoteConfig)) {
-            return $this->createCartNoteLengthErrorResponse($this->cartNoteConfig);
+        if (!$this->isCartNoteLengthValid($note)) {
+            return $this->createCartNoteLengthErrorResponse();
         }
 
         $quoteTransfer = $this->quoteClient->getQuote();
